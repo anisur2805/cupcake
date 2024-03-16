@@ -46,7 +46,7 @@ export default PreviousPost;
 export async function getPosts() {
 	// Fetch posts from an external API endpoint
 	const res = await fetch(
-		"https://anisurdev.info/wp-json/wp/v2/posts?per_page=3"
+		"https://anisurdev.info/wp-json/wp/v2/posts?per_page=3&order=desc"
 	);
 	if (!res.ok) throw new Error("failed to fetch posts");
 	return res.json();

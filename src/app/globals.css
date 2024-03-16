@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+figure.wp-block-image {
+    margin: 10px 0;
+}
