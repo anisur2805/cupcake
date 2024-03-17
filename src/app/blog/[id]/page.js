@@ -2,33 +2,26 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function Post() {
-	const url = window.location.href;
-	const path = new URL(url).pathname;
-	const parts = path.split("/");
-	const id = parts[parts.length - 1];
+export default function Post({ params }) {
+
 	const [postData, setPostData] = useState(null);
 
-	useEffect(() => {
-		async function fetchPostData() {
-			try {
-				const response = await fetch(
-					`https://anisurdev.info/wp-json/wp/v2/posts/${id}`
-				);
-				if (!response.ok) {
-					throw new Error("Failed to fetch post");
-				}
-				const postData = await response.json();
-				setPostData(postData);
-			} catch (error) {
-				console.error(error);
+	async function fetchPostData(id) {
+		try {
+			const response = await fetch(
+				`https://anisurdev.info/wp-json/wp/v2/posts/${id}`
+			);
+			if (!response.ok) {
+				throw new Error("Failed to fetch post");
 			}
+			const postData = await response.json();
+			setPostData(postData);
+		} catch (error) {
+			console.error(error);
 		}
+	}
 
-		if (id) {
-			fetchPostData();
-		}
-	}, [id]);
+	fetchPostData(params.id);
 
 	if (!postData) {
 		return (
