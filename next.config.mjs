@@ -13,6 +13,12 @@ const nextConfig = {
 				hostname: "anisurdev.info",
 				port: "",
 				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "assets.pokemon.com",
+				port: "",
+				pathname: "/**",
 			}
 		]
 	},
